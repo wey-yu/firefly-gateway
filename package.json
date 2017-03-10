@@ -1,0 +1,29 @@
+{
+  "name": "firefly-gateway",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "./node_modules/.bin/mocha tests/**",
+    "doc": "WIP",
+    "start": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wey-yu/firefly-gateway.git"
+  },
+  "keywords": [],
+  "author": "@k33g_org",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/wey-yu/firefly-gateway/issues"
+  },
+  "homepage": "https://github.com/wey-yu/firefly-gateway#readme",
+  "dependencies": {
+    "firefly-service": "git+https://github.com/thespacefirefly/firefly-service.git"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.2.0"
+  }
+}
