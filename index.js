@@ -70,7 +70,7 @@ console.log("🌍 serviceInformations: ", serviceInformations)
 // talk with the discovery server
 let heartBeat = new HeartBeat({
   id: 'serviceHeartBeat',
-  delay: 9000,
+  delay: 4000,
   data: {serverUrl, serviceInformations, credentials}
 })
 
