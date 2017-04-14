@@ -10,11 +10,12 @@ const httpPort =  process.env.PORT || 5000 // 8080 on CC
 const exposedHttpPort = process.env.EXPOSED_PORT || 5000 // 80 on CC
 const credentials = process.env.SERVICE_CREDENTIALS || 'firefly'
 
-//const serverUrl = process.env.SERVER_URL || `http://localhost:8080` 
-// now you don't need to set the domain name
-const serverUrl = process.env.SERVER_URL || "http://" + process.env.APP_ID.replace("_", "-") + ".cleverapps.io"
+const serverUrl = process.env.SERVER_URL || `http://localhost:8080` 
 
-const serviceBaseUrl = `${process.env.SERVICE_BASE_URL || 'http://localhost'}:${exposedHttpPort}`
+//const serviceBaseUrl = `${process.env.SERVICE_BASE_URL || 'http://localhost'}:${exposedHttpPort}`
+// now you don't need to set the domain name
+const serviceBaseUrl = process.env.SERVICE_BASE_URL || "http://" + process.env.APP_ID.replace("_", "-") + ".cleverapps.io"
+
 const serviceName = process.env.SERVICE_NAME || "sensors"
 
 //const serviceId = process.env.SERVICE_ID || "001"
