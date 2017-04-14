@@ -9,20 +9,32 @@ const HumiditySensor = require('./sensors/HumiditySensor');
 const httpPort =  process.env.PORT || 5000 // 8080 on CC
 const exposedHttpPort = process.env.EXPOSED_PORT || 5000 // 80 on CC
 const credentials = process.env.SERVICE_CREDENTIALS || 'firefly'
-const serverUrl = process.env.SERVER_URL || `http://localhost:8080` 
+
+//const serverUrl = process.env.SERVER_URL || `http://localhost:8080` 
+// now you don't need to set the domain name
+const serverUrl = process.env.SERVER_URL || "http://" + process.env.APP_ID.replace("_", "-") + ".cleverapps.io"
+
 const serviceBaseUrl = `${process.env.SERVICE_BASE_URL || 'http://localhost'}:${exposedHttpPort}`
 const serviceName = process.env.SERVICE_NAME || "sensors"
-const serviceId = process.env.SERVICE_ID || "001"
+
+//const serviceId = process.env.SERVICE_ID || "001"
+// now you don't need to set the service id
+const serviceId = process.env.SERVICE_ID || require('uuid/v1')()
+
+
 const serviceVersion = process.env.SERVICE_VERSION || "1.0.0"
 const description = process.env.SERVICE_DESCRIPTION || "Hello 🌍"
 
-const nbTemperatureSensors = process.env.NB_TEMPERATURE_SENSORS || 5
-const nbHumiditySensors = process.env.NB_HUMIDITY_SENSORS || 1
+let getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+
+
+const nbTemperatureSensors = process.env.NB_TEMPERATURE_SENSORS || getRandomInt(1,5)
+const nbHumiditySensors = process.env.NB_HUMIDITY_SENSORS || getRandomInt(1,5)
 
 
 // ============ SENSORS ============
 let randomDelay =  () => {
-  let getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
+  //let getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
   return getRandomInt(1500, 4000);
 }
 // Generate n temperature sensors

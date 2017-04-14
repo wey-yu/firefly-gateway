@@ -20,7 +20,8 @@
   },
   "homepage": "https://github.com/wey-yu/firefly-gateway#readme",
   "dependencies": {
-    "firefly-service": "git+https://github.com/thespacefirefly/firefly-service.git"
+    "firefly-service": "git+https://github.com/thespacefirefly/firefly-service.git",
+    "uuid": "^3.0.1"
   },
   "devDependencies": {
     "chai": "^3.5.0",
