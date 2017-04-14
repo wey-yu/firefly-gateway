@@ -13,13 +13,11 @@ const credentials = process.env.SERVICE_CREDENTIALS || 'firefly'
 const serverUrl = process.env.SERVER_URL || `http://localhost:8080` 
 
 //const serviceBaseUrl = `${process.env.SERVICE_BASE_URL || 'http://localhost'}:${exposedHttpPort}`
-// now you don't need to set the domain name
 const serviceBaseUrl = process.env.SERVICE_BASE_URL || "http://" + process.env.APP_ID.replace("_", "-") + ".cleverapps.io"
 
 const serviceName = process.env.SERVICE_NAME || "sensors"
 
 //const serviceId = process.env.SERVICE_ID || "001"
-// now you don't need to set the service id
 //const serviceId = process.env.SERVICE_ID || require('uuid/v1')()
 const serviceId = process.env.SERVICE_ID || process.env.APP_ID
 
