@@ -20,7 +20,8 @@ const serviceName = process.env.SERVICE_NAME || "sensors"
 
 //const serviceId = process.env.SERVICE_ID || "001"
 // now you don't need to set the service id
-const serviceId = process.env.SERVICE_ID || require('uuid/v1')()
+//const serviceId = process.env.SERVICE_ID || require('uuid/v1')()
+const serviceId = process.env.SERVICE_ID || process.env.APP_ID
 
 
 const serviceVersion = process.env.SERVICE_VERSION || "1.0.0"
