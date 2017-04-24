@@ -102,6 +102,10 @@ httpService({serviceName}).then(service => {
   service.get(`/${serviceName}/humidity/values`, (req, res) => {
     res.send(humiditySensors.map(sensor => sensor.getData()))
   });
+  
+  service.get(`/`, (req, res) => {
+    res.send(`<h1>${serviceName}</h1>`)
+  });
 
   service.listen(httpPort);
   console.log(`🌍 Microservice is started - listening on ${httpPort}`);
