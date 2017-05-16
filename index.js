@@ -1,6 +1,6 @@
 // Demo
 
-console.log("HELLO 😀😡")
+console.log("HELLO")
 
 const HeartBeat = require('firefly-service').HeartBeat
 const httpService = require('firefly-service').httpService
