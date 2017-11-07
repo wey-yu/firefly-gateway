@@ -112,7 +112,7 @@ httpService({serviceName}).then(service => {
   });
 
   service.listen(httpPort);
-  console.log(`🌍 Microservice is started - listening on ${httpPort}`);
+  console.log(`🌍 Gateway is started - listening on ${httpPort}`);
 
 })
 
