@@ -1,6 +1,6 @@
 # firefly-gateway
 
-## Deployment on CC
+## Deployment on CC ...
 
 ```
 PORT=8080
