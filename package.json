@@ -20,6 +20,8 @@
   },
   "homepage": "https://github.com/wey-yu/firefly-gateway#readme",
   "dependencies": {
+    "appdynamics": "^4.5.23",
+    "elastic-apm-node": "^3.5.0",
     "firefly-service": "git+https://github.com/thespacefirefly/firefly-service.git"
   },
   "devDependencies": {

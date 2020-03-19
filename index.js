@@ -1,5 +1,21 @@
-// Demo
+if (process.env.APPDYNAMICS_CONTROLLER_HOST_NAME)
+  require("appdynamics").profile({
+    controllerHostName: process.env.APPDYNAMICS_CONTROLLER_HOST_NAME,
+    controllerPort: process.env.APPDYNAMICS_CONTROLLER_PORT,
+    controllerSslEnabled: process.env.APPDYNAMICS_CONTROLLER_SSL_ENABLED,
+    accountName: process.env.APPDYNAMICS_AGENT_ACCOUNT_NAME,
+    accountAccessKey: process.env.APPDYNAMICS_AGENT_ACCOUNT_ACCESS_KEY,
+    applicationName:  process.env.APP_NAME || 'firefly-gateway',
+    tierName: process.env.APP_ID,
+    nodeName: process.env.INSTANCE_ID // The controller will automatically append the node name with a unique number
+  });
 
+if (process.env.ELASTIC_APM_SERVER_URLS)
+  require("elastic-apm-node").start()
+
+// Demo
+const { spawn } = require("child_process");
+let subprocesses = [];
 console.log("HELLO world")
 
 const HeartBeat = require('firefly-service').HeartBeat
@@ -23,10 +39,10 @@ const serviceName = process.env.SERVICE_NAME || "sensors"
 
 //const serviceId = process.env.SERVICE_ID || "001"
 //const serviceId = process.env.SERVICE_ID || require('uuid/v1')()
-const serviceId = process.env.SERVICE_ID || process.env.APP_ID
+const serviceId = process.env.SERVICE_ID +"_"+ process.env.INSTANCE_NUMBER +"_" + process.env.INSTANCE_ID || process.env.APP_ID
 
 
-const serviceVersion = process.env.SERVICE_VERSION || "1.0.0"
+const serviceVersion = process.env.SERVICE_VERSION || process.env.COMMIT_ID || "1.0.0"
 const description = process.env.SERVICE_DESCRIPTION || "Hello 🌍"
 
 let getRandomInt = (min, max) => Math.floor(Math.random() * (max - min + 1)) + min;
@@ -109,6 +125,24 @@ httpService({serviceName}).then(service => {
   
   service.get(`/`, (req, res) => {
     res.send(`<h1>${serviceName}</h1>`)
+  });
+  
+
+service.get("/lessload", (req, res) => {
+  if(subprocesses.length > 0) {
+    subprocesses[subprocesses.length - 1].kill('SIGKILL');
+    subprocesses.pop();
+    res.send("💀💀💀💀💀💀💀 Decreasing load 💀💀💀💀💀💀💀").status(200).end();
+  } else {
+    res.status(400).end();
+  }
+});
+
+  service.get(`/load`, (req, res) => {
+    const cat = spawn("cat", ["/dev/urandom"]);
+    subprocesses.push(cat);
+    cat.stdout.on('data', (data) => {});
+    res.send("🤘🤘🤘🤘🤘🤘🤘 INCREASING LOAD 🤘🤘🤘🤘🤘🤘🤘🤘").status(200).end();
   });
 
   service.listen(httpPort);
